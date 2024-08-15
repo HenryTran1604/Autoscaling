@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stress-api
+  template:
+    metadata:
+      name: stress-api-pod
+      labels:
+        app: stress-api
+    spec:
+      containers:
+        - name: stress-api
+          image: quanghuy1604/stress-test-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8089
+          resources:
+            requests:
+              memory: 20Mi
+              cpu: "0.25"
+            limits:
+              memory: 400Mi
+              cpu: "1"
