@@ -6,14 +6,15 @@ metadata:
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
-    name: stress-api
+    name: demo-keda-deploy
     kind: Deployment
   minReplicaCount: 1
   maxReplicaCount: 10
   triggers:
   - type: prometheus
     metadata:
-      serverAddress: http://stress-test-service:8000/metrics
+      serverAddress: http://prometheus-server.monitoring.svc.cluster.local:80/
       metricName: total_http_request
       threshold: '10'
-      query: sum(rate(flask_http_request_total{method="GET",status="200"}[1m]))
+      query: sum(rate(hello_world_requests{service="demo-keda-svc"}[1m]))
+      ignoreNullValues: "true"
