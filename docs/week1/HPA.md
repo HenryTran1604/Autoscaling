@@ -106,27 +106,27 @@ wrk -c 5 -t 5 -d 300s -H "Connection: Close" http://stress-test-service:8000/str
 Output:
 - Trước test
 <div>
-    <img src="images/hpa/before-test.png" alt="a"/>
+    <img src="../../images/hpa/before-test.png" alt="a"/>
     <p style="text-align: center">Before testing</p>
 </div>
 - Trong quá trình test
 <div>
-    <img src="images/hpa/during-test.png" alt="a"/>
+    <img src="../../images/hpa/during-test.png" alt="a"/>
     <p style="text-align: center">During testing</p>
 </div>
 - Sau khi test kết thúc
 <div>
-    <img src="images/hpa/after-test.png" alt="a"/>
+    <img src="../../images/hpa/after-test.png" alt="a"/>
     <p style="text-align: center">After testing</p>
 </div>
 
 - HPA
 <div>
-    <img src="images/hpa/hpa.png" alt="a"/>
+    <img src="../../images/hpa/hpa.png" alt="a"/>
     <p style="text-align: center">HPA</p>
 </div>
 <div>
-    <img src="images/hpa/top-pods.png" alt="a"/>
+    <img src="../../images/hpa/top-pods.png" alt="a"/>
     <p style="text-align: center">Top pods</p>
 </div>
 
@@ -134,7 +134,7 @@ Output:
 ### a. Khái niệm
 - HPA: là cách scale mà ta sẽ tăng số lượng worker để xử lý công việc khi số lượng công việc tăng lên. Ở Kubernetes, HPA sẽ tăng số lượng các Pods. Kubernetes có cung cấp cho chúng ta cách autoscaling dựa vào việc phát hiện cpu hoặc memory ta chỉ định đã đạt tới ngưỡng scale.
 <div style="text-align: center">
-    <img src="images/hpa/design.png" alt="a"/>
+    <img src="../../images/hpa/design.png" alt="a"/>
     <p style="text-align: center">Top pods</p>
 </div>
 - Horizontal pod autoscaling là cách ta tăng giá trị replicas ở trong các scalable resource (Deployment, ReplicaSet, ReplicationController, hoặc StatefulSet) để scale số lượng Pod. Công việc này được thực hiện bởi Horizontal controller khi ta tạo một HorizontalPodAutoscaler (HPA) resource. Horizontal controller sẽ thường xuyên kiểm tra metric của Pod, và tính toán số lượng pod replicas phù hợp dựa vào metric kiểm tra của Pod hiện tại với giá trị metric mà ta đã chỉ định ở trong HPA resource, sau đó sẽ thay đổi trường replicas của các scalable resource (Deployment, ReplicaSet, ReplicationController, or StatefulSet) nếu nó thấy cần thiết.
@@ -166,7 +166,7 @@ spec:
 #### i. Thu thập metrics
 - Horizontal controller thu thập metrics thông qua metrics server. Trên từng worker node có một `cAdvisor` - component của `kubelet`, có nhiệm vụ thu thập metrics, sau đó metrics này sẽ được tổng hợp ở metrics server và Horizontal controller sẽ lấy metrics từ metrics server ra.
 <div>
-    <img src="images/hpa/metrics-server.png" alt="a"/>
+    <img src="../../images/hpa/metrics-server.png" alt="a"/>
     <p style="text-align: center">Cách thu thập metrics</p>
 </div>
 
@@ -181,7 +181,7 @@ desiredReplicas = ceil[currentReplicas * ( currentMetricValue / desiredMetricVal
 ```
 - Nếu cấu hình chỉ có 1 metrics, thì số lượng Pods sẽ được tính theo công thức trên. Nếu cấu hình có nhiều metrics, horizontal controller sẽ tính giá trị replicas của từng metrics sau đó lấy **giá trị replicas lớn nhất**
 <div>
-    <img src="images/hpa/multi-metrics.png" alt="a"/>
+    <img src="../../images/hpa/multi-metrics.png" alt="a"/>
     <p style="text-align: center">Ví dụ về nhiều metrics</p>
 </div>
 

@@ -11,7 +11,7 @@ Nếu một pod đang chạy trong một node có đủ tài nguyên, container 
 - CPU resource luôn luôn phải chỉ định là một số tuyệt đối và không bao giờ tương đối. Ví dụ `500m` CPU sẽ giống nhau trên máy 1-core, 2-core hoặc 48-core...
 > `1` CPU = `1000m` CPU. Kubernetes không chi phép CPU resource nhỏ hơn `1m` hoặc `0.001` CPU.
 #### ii. Đơn vị của memory
-- Limits và requests của memory được đo bằng `byte`s. 
+- Limits và requests của memory được đo bằng `byte`. 
 ```
 128974848, 129e6, 129M,  128974848000m, 123Mi
 ```
@@ -38,7 +38,7 @@ Trong Kubernetes, metrics được chia thành 3 loại:
 ## 3. Resource Metrics
 - Là những metrics được thu thập từ các tài nguyên của Kubernetes như CPU, bộ nhớ (memory), và network I/O.
 <div>
-    <img src="./images/hpa/resouce-metrics.png">
+    <img src="../../images//hpa/resouce-metrics.png">
     <div style="font-style: italic; text-align: center">Resoirce metrics Pipeline</div>
 </div>
 
