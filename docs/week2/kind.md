@@ -8,6 +8,7 @@
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 ```
+[`Bash-file`](../../code/setup/kind-setup.sh)
 ## II. Create Cluster
 ```sh
 kind create cluster --name=dev
@@ -42,9 +43,17 @@ In order to interact with a specific cluster, you only need to specify the clust
 kubectl cluster-info --context kind-kind
 kubectl cluster-info --context kind-kind-2
 ```
+- Lấy danh sách context hiện có
+```
+kubectl config get-contexts
+```
+- Chuyển giữa các cluster
+```
+kubectl config use-context <context-name>
+```
 ## III. Cloud provider for KIND
 - Vì KIND (Kubernetes IN Docker) nên các port của Cluster sẽ không được expose ra ngoài. Chúng ta muốn truy cập các port từ host thì cần expose. Có 2 cách để làm việc này:
-- Sử dụng `expostPortMapping` khi tạo cụm: [Example](./hpa/init-cluster.yml)
+- Sử dụng `extraPortMappings` khi tạo cụm: [Example](./hpa/init-cluster.yml)
 ```yml
   extraPortMappings:
   - containerPort: 80
@@ -58,6 +67,7 @@ Tuy nhiên với cách này bất tiện ở chỗ mỗi khi chúng ta muốn ex
 - Sử dụng `Cloud-provider-for-KIND`, nó sẽ chạy như một dịch vụ provider của các Cloud hiện này. Với mỗi một service dạng `LoadBanlancer` ở trong cụm sẽ được cấp phát 1 external IP và có thể kết nối từ host
 - Cài đặt [](./setup/cloud-provider-KIND.sh)
 - Muốn chạy dịch vụ này cần giữ cho nó chạy liên tục, chúng ta có thể để nó chạy dưới dạng 1 dịch vụ và bật tắt dễ dàng
+> /etc/systemd/system/cloud-provider-kind.service
 ```
 [Unit]
 Description = LoadBalancer for KIND clusters
@@ -73,3 +83,23 @@ Group = 1000   # find your gid, run: id -g
 [Install]
 WantedBy=multi-user.target
 ```
+> Nếu gặp lỗi `217/USER1` có thể xóa User và Group đi (để với quyền sudo)
+- Khởi chạy dịch vụ
+```sh
+sudo systemctl enable --now cloud-provider-kind.service
+```
+- Kiếm tra dịch vụ
+```sh
+systemctl status cloud-provider-kind.service
+```
+- Khi đó, mỗi một service trong Cluster sẽ được cập một external service và có thể truy cập từ host
+```sh
+quanghuy@quanghuy02:~/GD2/autoscaling$ kubectl get svc
+NAME                    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes              ClusterIP      10.96.0.1       <none>        443/TCP          4d
+mongo-express-service   LoadBalancer   10.96.72.41     172.18.0.5    8081:30000/TCP   3d15h
+mongodb-service         ClusterIP      10.96.225.188   <none>        27017/TCP        3d16h
+```
+- GUI khi truy cập từ host
+
+![demo](../../images/kind/$RRHJQRS.png)
