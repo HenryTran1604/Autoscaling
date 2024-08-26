@@ -169,6 +169,12 @@ spec:
                   - name:
                     containerPort:      
 ```
+## 4. Command
+- Tạo một workload
+```sh
+kubectl create deployment NAME --image=image
+> kubectl create deployment nginx-depl --image=nginx
+```
 ## x. Tài liệu tham khảo
 - [Kubernetes documentations](https://kubernetes.io/vi/docs/concepts/overview/what-is-kubernetes/)
 - [What is a virtual machine (VM)?](https://www.redhat.com/en/topics/virtualization/what-is-a-virtual-machine)

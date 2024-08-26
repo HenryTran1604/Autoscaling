@@ -241,3 +241,6 @@ behavior:
       periodSeconds: 15
     selectPolicy: Max
 ```
+
+
+https://github.com/pixie-io/pixie-demos/tree/main/custom-k8s-metrics-demo

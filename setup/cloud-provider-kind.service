@@ -1,0 +1,13 @@
+[Unit]
+Description = LoadBalancer for KIND clusters
+After = docker.service
+
+[Service]
+Type = simple
+ExecStart = /home/quanghuy/go/bin/cloud-provider-kind    # change your path
+StandardOutput = journal
+User = 319818391    # find your uid, run: id -u
+Group = 319816193   # find your gid, run: id -g 
+
+[Install]
+WantedBy=multi-user.target
