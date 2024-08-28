@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-exporter
+  labels:
+    app: nginx-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-exporter
+  template:
+    metadata:
+      labels:
+        app: nginx-exporter
+    spec:
+      containers:
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:1.3.0
+        args:
+        - "-nginx.scrape-uri"
+        - "http://app-svc:80/metrics"
+        ports:
+        - containerPort: 9113
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-exporter
+  labels:
+    app: nginx-exporter
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-exporter
+  ports:
+  - name: nginx-exporter-port
+    port: 9113
+    targetPort: 9113
+    protocol: TCP

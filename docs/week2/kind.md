@@ -102,4 +102,4 @@ mongodb-service         ClusterIP      10.96.225.188   <none>        27017/TCP  
 ```
 - GUI khi truy cập từ host
 
-![demo](../../images/kind/$RRHJQRS.png)
+![demo](images/kind/$RRHJQRS.png)

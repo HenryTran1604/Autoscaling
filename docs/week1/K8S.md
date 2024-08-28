@@ -3,7 +3,7 @@
 - Kubernetes là một nền tảng mã nguồn mở, khả chuyển, có thể mở rộng để quản lý ứng dụng được đóng gói và các service, giúp thuận lợi cho việc cấu hình tự động hóa việc triển khai ứng dụng.
 > Kubernetes theo tiếng Hi Lap có nghĩa là `người lái tàu`.
 ### a. Container
-| ![vm_container](../../images/vm_container.png) | 
+| ![vm_container](images/k8s/vm_container.png) | 
 |:--:| 
 | *VM and Container* |
 - VM (Virtual Machine), máy ảo là một môi trường tính toán mà độc lập với chính CPU, bộ nhớ, card mạng và được tạo từ một nhóm các tài nguyên phần cứng. Và được giám sát và cô lập những nguồn tài nguyên đó bởi `hypervisor`.  Một máy tính vật lý (host) có thể có nhiều máy ảo, các máy ảo dùng tài nguyên trên host đó để vận hành, các máy ảo trên cùng một host có thể có các hệ điều hành khác nhau. Ảo hóa cho phép sử dụng tốt hơn các tài nguyên trong một máy chủ vật lý và cho phép khả năng mở rộng tốt hơn vì một ứng dụng có thể được thêm hoặc cập nhật dễ dàng, giảm chi phí phần cứng và hơn thế nữa. Với ảo hóa, bạn có thể có một tập hợp các tài nguyên vật lý dưới dạng một cụm các máy ảo sẵn dùng. 
@@ -25,7 +25,7 @@
 - Tự phục hồi: Tự động khởi động lại các container bị lỗi, thay thế các container, xóa các container không phải hồi lại cấu hình health check và không cho các client biết đến chúng cho đến chúng sẵn sàng hoạt động.
 - Quản lý cấu hình và bảo mật: Kubernetes cho phép lưu trữ và quản lý thông tin nhạy cảm, có thể triển khai và cập nhật lại secret và cấu hình ứng dụng mà không cần build lại các container image và không để lộ secret trong cấu hình stack.
 ## 2. Các thành phần
-| ![component_overview](../../images/components.png) | 
+| ![component_overview](images/k8s/components.png) | 
 |:--:| 
 | *Component Overview* |
 - **Cluster**: Là một tập hợp các máy làm nhiệm vụ được gọi là **node**, thường chạy các ứng dụng đã được đóng gói. Mỗi cluster có ít nhất 1 **worker node**.
@@ -34,23 +34,23 @@
 - **Master node**: Là khái nhiệm vật lý hoặc phần cứng, nơi các thành phần của control plane được chạy.
 ### a. Các thành phần của control plane
 #### i. Kube-apiserver
-| ![api_server](../../images/api-server.png) | 
+| ![api_server](images/k8s/api-server.png) | 
 |:--:| 
 | *API Server* |
 - Kube-apiserver: API server là component mà control plane của Kubernetes exposes Kubernetes API. API server là nơi mà end user có thể tương tác với các API trực tiếp thông qua CLI hoặc SDK. Có thể gọi API server là frontend của control plane. Với API server, người dùng có thể yêu cầu Kubernetes thực hiện các lệnh: Lên lịch, lấy danh sách các pods, ...
 #### ii. etcd
-| ![etcd](../../images/etcd.png) | 
+| ![etcd](images/k8s/etcd.png) | 
 |:--:| 
 | *Etcd* |
 - Etcd là một *kho chứa* nhất quán và độ sẵn sàng cao, lưu trữ dưới dạng *key: value*, nơi mà Kubernetes lưu trữ tất cả dữ liệu của các cluster. Chỉ có thể truy cập vào etcd thông qua API Server vì các lý do bảo mật. Etcd có cơ chế `watch API` bằng cách theo dõi liên tục các keys và gửi các update trở lại client thông qua API server.
 #### iii. Scheduler
-| ![scheduler](../../images/scheduler.png) | 
+| ![scheduler](images/k8s/scheduler.png) | 
 |:--:| 
 | *Scheduler* |
 - Scheduler quan sát những pods mới được tạo nhưng chưa đuợc gán cho node sau đó chọn các node phù hợp và chạy các pods đó.
 - Các nhân tố để sheduler đưa ra quyết định bao gồm: yêu cầu tài nguyên cá nhân và tập thể, các ràng buộc về phần cứng/phần mềm/chính sách, thông số kỹ thuật về mối quan hệ và chống mối quan hệ, vị trí dữ liệu, sự can thiệp giữa các khối lượng công việc và thời hạn. Khi một node được chọn bởi scheduler, nó sẽ thông báo cho API server.
 #### iv. Kube controll manager
-| ![controller-manager](../../images/kubecontroller.png) | 
+| ![controller-manager](images/k8s/kubecontroller.png) | 
 |:--:| 
 | *Kube controller manager* |
 - Control plane chạy các tiến trình điều khiển
@@ -63,12 +63,12 @@
 Tất cả các thành phần của control plane được bao gồm trong một node gọi là **master node**
 ### b. Các thành phần của Node
 #### i. Kuber-let
-| ![kube-let](../../images/kuberlet.png) | 
+| ![kube-let](images/k8s/kuberlet.png) | 
 |:--:| 
 | *Kuberlet* |
 - Kuberlet là một agent chạy trên từng node trong các cluster. Nó chịu trách nhiệm quản lý các pods do Kubernetes tạo ra và gửi các gửi các sự kiện về trạng thái của các pods tới các master node.
 #### ii. Kuber-proxy
-| ![kube-proxy](../../images/kubeproxy.png) | 
+| ![kube-proxy](images/k8s/kubeproxy.png) | 
 |:--:| 
 | *Kube-proxy* |
 - Kube-proxy là một network proxy chạy trên từng node trong các cụm, cài đặt các phần của Kubernetes Service. Kube-proxy duy trì các luật cho các nodes, những luật này cho phép mạng giao tiếp giữa các Pods từ các phiên network bên trong và bên ngoài cụm.

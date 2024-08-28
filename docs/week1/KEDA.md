@@ -8,7 +8,7 @@
     - Cung cấp Kubernetes Metrics Server để hiển thị dữ liệu event (ví dụ: độ dài hàng đợi, độ trễ topic)
 
 <div>
-    <img src="../../images/keda/architect.png"/>
+    <img src="images/keda/architect.png"/>
     <div style="text-align: center; font-style: italic">Kiến trúc KEDA</div>
 </span>
 
@@ -94,6 +94,6 @@ spec:
 
 output khi thực hiện stress test với KEDA:
 <div>
-    <img src="../../images/keda/scaling.png"/>
+    <img src="images/keda/scaling.png"/>
     <div style="text-align: center; font-style: italic">Autoscaling KEDA</div>
 </span>

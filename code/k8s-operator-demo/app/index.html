@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K8S Operator</title>
+</head>
+
+<body>
+    <div id="random"></div>
+    <button id="btn" onclick="handleClick()">Click me!</button>
+    <script>
+        var randomTag = document.getElementById("random");
+        console.log(randomTag)
+        var btn = document.getElementById("btn")
+        console.log(btn)
+        function handleClick() {
+            randomTag.textContent = Math.random() * 199;
+        }       
+    </script>
+</body>
+
+</html>

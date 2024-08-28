@@ -28,6 +28,5 @@
 | HPA cho custom metrics | [Here](./docs/week2/HPA-for-custom-metrics.md)    | Chưa làm |
 | Cloud provider for KIND | [Here](./docs/week2/kind.md#iii-cloud-provider-for-kind) | Đã làm |
 | Google Stack Driver | [Here](./docs/week2/Google%20stack%20driver.md)| Chưa làm |
-| K8S Controller vs Operator| [Here](./docs/week2/K8S-controller-vs-operator.md)    | Chưa làm |
 | Cách KEDA chuyển đổi metrics| [Here](./docs/week2/KEDA-convert-metrics-to-HPA.md)    | Chưa làm |
-| K8S Controller vs Operator | [Here](./docs/week2/K8S-controller-vs-operator.md)    | Chưa làm |
+| K8S Controller vs Operator | [Here](./docs/week2/K8S-controller-vs-operator.md)    | Đã làm |

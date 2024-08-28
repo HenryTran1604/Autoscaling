@@ -42,9 +42,17 @@ In order to interact with a specific cluster, you only need to specify the clust
 kubectl cluster-info --context kind-kind
 kubectl cluster-info --context kind-kind-2
 ```
+- Lấy danh sách clusters
+```
+kubectl config get-contexts
+```
+- Chỉ định cluster được active
+```
+kubectl config use-context CONTEXT_NAME
+```
 ## III. Cloud provider for KIND
 - Vì KIND (Kubernetes IN Docker) nên các port của Cluster sẽ không được expose ra ngoài. Chúng ta muốn truy cập các port từ host thì cần expose. Có 2 cách để làm việc này:
-- Sử dụng `expostPortMapping` khi tạo cụm: [Example](./hpa/init-cluster.yml)
+- Sử dụng `extraPortMapping` khi tạo cụm: [Example](./hpa/init-cluster.yml)
 ```yml
   extraPortMappings:
   - containerPort: 80
