@@ -38,8 +38,8 @@ Trong Kubernetes, metrics được chia thành 3 loại:
 ## 3. Resource Metrics
 - Là những metrics được thu thập từ các tài nguyên của Kubernetes như CPU, bộ nhớ (memory), và network I/O.
 <div>
-    <img src="../../images//hpa/resouce-metrics.png">
-    <div style="font-style: italic; text-align: center">Resoirce metrics Pipeline</div>
+    <img src="images/metrics/resouce-metrics.png">
+    <div style="font-style: italic; text-align: center">Resource metrics Pipeline</div>
 </div>
 
 - `cAdvisor`: Là một tiến trình chạy ngầm để thu thập, tổng hợp và xuất các metrics từ các container cho `kubelet`.

@@ -237,3 +237,6 @@ spec:
   selector:
     prometheus: prometheus
 ```
+- Kết quả
+
+![result](./images/operator-demo/prometheus.png)
