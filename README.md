@@ -31,3 +31,10 @@
 | Google Stack Driver | [Here](./docs/week2/Google%20stack%20driver.md)| Chưa làm |
 | Cách KEDA chuyển đổi metrics| [Here](./docs/week2/KEDA-convert-metrics-to-HPA.md)    | Chưa làm |
 | K8S Controller vs Operator | [Here](./docs/week2/K8S-controller-vs-operator.md)    | Đã làm |
+
+## Tuần 3: 02/09/2024 - 13/09/2024
+| Tiêu đề    | Link | Status |
+| -------- | ------- | -------- |
+| HPA cho custom metrics | [Here](./docs/week2/HPA-for-custom-metrics.md)    | 09/09/2024 |
+| Google Stack Driver | [Here](./docs/week3/Google%20stack%20driver.md)| Chưa làm |
+| Cách KEDA chuyển đổi metrics| [Here](./docs/week3/KEDA-convert-metrics-to-HPA.md)    | Chưa làm |
